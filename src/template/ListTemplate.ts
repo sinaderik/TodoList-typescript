@@ -28,7 +28,7 @@ export default class ListTemplate implements DomList {
             const button = document.createElement('button') as HTMLButtonElement
 
             li.className = 'item'
-            check.type = 'check'
+            check.type = 'checkbox'
             check.id = item.id
             check.checked = item.checked
             li.append(check)
@@ -46,6 +46,7 @@ export default class ListTemplate implements DomList {
             button.textContent = 'X'
             button.addEventListener('click', () => {
                 fullList.removeItem(item.id)
+                this.clear()
                 this.render(fullList)
             })
             li.append(button)

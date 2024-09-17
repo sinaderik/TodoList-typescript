@@ -11,11 +11,15 @@ const initApp = (): void => {
         event.preventDefault()
         const input = document.getElementById('newItem') as HTMLInputElement
         const newEntryText: string = input.value.trim()
+        input.value=''
         if (!newEntryText) return
         const itemId: number = fullList.list.length
             ? parseInt(fullList.list[fullList.list.length - 1].id) + 1
             : 1
         const newItem = new ListItem(itemId.toString(), newEntryText)
+        
+        template.clear()
+
         fullList.addItem(newItem)
         template.render(fullList)
     })
@@ -25,6 +29,8 @@ const initApp = (): void => {
         event.preventDefault();
         fullList.clearList()
         template.clear()
+
+        template.render(fullList)
     })
 
     fullList.load()
